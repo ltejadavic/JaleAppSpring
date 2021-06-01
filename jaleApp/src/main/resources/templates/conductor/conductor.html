@@ -36,11 +36,11 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/passengers/list}">
+				th:href="@{/conductors/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleApp Pasajero</div>
+				<div class="sidebar-brand-text mx-2">JaleApp Conductor</div>
 			</a>
 
 			<!-- Divider -->
@@ -55,7 +55,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros
+						<a class="collapse-item" th:href="@{/conductors/list}">Conductores
 						</a>
 					</div>
 
@@ -131,17 +131,17 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Registrar Pasajero</h1>
+					<h1 class="h3 mb-4 text-gray-800">Registrar Conductor</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${passenger}" th:remove="tag">
+					<div th:object="${conductor}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/passengers/save}" th:object="${passenger}"
+					<form th:action="@{/conductors/save}" th:object="${conductor}"
 						method="post">
 						<div class="form-group row">
 							<label for="DNI" class="col-sm-2 col-form-label">DNI </label>
@@ -154,35 +154,35 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Pasajero:
+							<label for="name" class="col-sm-2 col-form-label">Conductor:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{namePasajero}"
+								<input type="text" th:field="*{nameConductor}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('namePasajero')}"
-									th:errors="*{namePasajero}"></small>
+									th:if="${#fields.hasErrors('nameConductor')}"
+									th:errors="*{nameConductor}"></small>
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label for="email" class="col-sm-2 col-form-label">Email: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{emailPasajero}" class="form-control"
+								<input type="text" th:field="*{emailConductor}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('emailPasajero')}" th:errors="*{emailPasajero}"></small>
+									th:if="${#fields.hasErrors('emailConductor')}" th:errors="*{emailConductor}"></small>
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label for="address" class="col-sm-2 col-form-label">Direccion: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{addressPasajero}" class="form-control"
+								<input type="text" th:field="*{addressConductor}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('addressPasajero')}" th:errors="*{addressPasajero}"></small>
+									th:if="${#fields.hasErrors('addressConductor')}" th:errors="*{addressConductor}"></small>
 							</div>
 						</div>
 
@@ -199,6 +199,15 @@
 							</div>
 						</div>
 
+						<div class="form-group row">
+							<label for="descripcion" class="col-sm-2 col-form-label">Descripcion: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{descriptionConductor}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('descriptionConductor')}" th:errors="*{descriptionConductor}"></small>
+							</div>
+						</div>
 
 						<div class="form-group row">
 							<label for="account" class="col-sm-2 col-form-label">Numero de Cuenta:
@@ -224,6 +233,7 @@
 							</div>
 						</div>
 						
+						
 						<div class="form-group row">
 							<label for="deuda" class="col-sm-2 col-form-label">Deuda: </label>
 							<div class="col-sm-6">
@@ -239,7 +249,7 @@
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/passengers/list" class="btn btn-danger">Cancelar</a>
+								<a href="/conductors/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 

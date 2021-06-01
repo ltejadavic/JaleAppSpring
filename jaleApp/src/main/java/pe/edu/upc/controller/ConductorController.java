@@ -15,55 +15,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entities.Pasajero;
-import pe.edu.upc.service.IPasajeroService;
+import pe.edu.upc.entities.Conductor;
+import pe.edu.upc.service.IConductorService;
 
 @Controller
-@RequestMapping("/passengers")
-public class PasajeroController {
+@RequestMapping("/conductors")
+public class ConductorController {
 	@Autowired
-	private IPasajeroService pService;
+	private IConductorService cService;
 
-	/* localhost:8082/passengers/ */
+	/* localhost:8082/conductors/ */
 	@GetMapping("/new")
-	public String newPassenger(Model model) {
-		model.addAttribute("passenger", new Pasajero());
+	public String newConductor(Model model) {
+		model.addAttribute("conductor", new Conductor());
 
-		return "passenger/passenger";
+		return "conductor/conductor";
 	}
 
 	@PostMapping("/save")
-	public String savePassenger(@Valid @ModelAttribute(value = "passenger") Pasajero pas, BindingResult result,
+	public String saveConductor(@Valid @ModelAttribute(value = "conductor") Conductor con, BindingResult result,
 			Model model, SessionStatus status) throws Exception {
 
 		if (result.hasErrors()) {
-			return "passenger/passenger";
+			return "conductor/conductor";
 		} else {
-			pService.insert(pas);
+			cService.insert(con);
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
-			return "redirect:/passengers/list";
+			return "redirect:/conductors/list";
 		}
 
 	}
 
 	@GetMapping("/list")
-	public String listPasajero(Model model) {
+	public String listConductor(Model model) {
 		try {
-			model.addAttribute("listaPasajeros", pService.list());
+			model.addAttribute("listaConductores", cService.list());
 		} catch (Exception e) {
-			model.addAttribute("error en controller pasajero", e.getMessage());
+			model.addAttribute("error en controller conductor", e.getMessage());
 		}
 
-		return "passenger/listPassenger";
+		return "conductor/listConductor";
 
 	}
 
 	@RequestMapping("/delete")
-	public String deletePasajero(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	public String deleteConductor(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if (id != null && id > 0) {
-				pService.delete(id);
+				cService.delete(id);
 				model.put("mensaje", "Se elimino Correctamente");
 			}
 		} catch (Exception e) {
@@ -71,6 +71,7 @@ public class PasajeroController {
 			model.put("mensaje", "Ocurrio un error");
 		}
 
-		return "redirect:/passengers/list";
+		return "redirect:/conductors/list";
 	}
+
 }
