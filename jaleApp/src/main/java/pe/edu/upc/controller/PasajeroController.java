@@ -24,7 +24,7 @@ public class PasajeroController {
 	@Autowired
 	private IPasajeroService pService;
 
-	/* localhost:8082/passengers/ */
+	/* localhost:8083/passengers/ */
 	@GetMapping("/new")
 	public String newPassenger(Model model) {
 		model.addAttribute("passenger", new Pasajero());
