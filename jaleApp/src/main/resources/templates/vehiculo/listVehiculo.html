@@ -38,12 +38,13 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/conductors/list}">
+				th:href="@{/vehicles/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleAPP Conductores</div>
+				<div class="sidebar-brand-text mx-2">JaleAPP Vehiculos</div>
 			</a>
+			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -63,20 +64,22 @@
 
 				</div>
 				</div>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>						
 
 				</div>
 				</div>
+						
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
 
 				</div>
-				</div>				
+				</div>
 				</li>
 
 
@@ -153,8 +156,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Conductores</h1>
-					<a th:href="@{/conductors/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Vehiculos</h1>
+					<a th:href="@{/vehicles/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 
 
@@ -164,30 +167,22 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">Id</th>
+								<th scope="col">Placa</th>
+								<th scope="col">Revision</th>
+								<th scope="col">Marca</th>
+								<th scope="col">Conductor</th>
 								<th scope="col">DNI</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Email</th>
-								<th scope="col">Direccion</th>
-								<th scope="col">TIU</th>
-								<th scope="col">Descripcion</th>
-								<th scope="col">Numero de Cuenta</th>
-								<th scope="col">Saldo</th>
-								<th scope="col">Deuda</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="e: ${listaConductores}">
-								<td th:text="${e.idConductor}"></td>
-								<td th:text="${e.DNI}"></td>
-								<td th:text="${e.nameConductor}"></td>
-								<td th:text="${e.emailConductor}"></td>
-								<td th:text="${e.addressConductor}"></td>
-								<td th:text="${e.TIU}"></td>
-								<td th:text="${e.descriptionConductor}"></td>
-								<td th:text="${e.accountNumber}"></td>
-								<td th:text="${e.balanceFavor}"></td>
-								<td th:text="${e.balanceDebt}"></td>
-								<td><a th:href="@{/conductors/delete?id=}+${e.idConductor}"
+							<tr th:each="e: ${listaVehiculos}">
+								<td th:text="${e.idVehiculo}"></td>
+								<td th:text="${e.placaVehiculo}"></td>
+								<td th:text="${e.revisionVehiculo}"></td>
+								<td th:text="${e.marcaVehiculo}"></td>
+								<td th:text="${e.conductor.nameConductor}"></td>
+								<td th:text="${e.conductor.DNI}"></td>
+								<td><a th:href="@{/vehicles/delete?id=}+${e.idVehiculo}"
 									class="btn btn-danger"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 
@@ -245,7 +240,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/passengers/list}">Cancel</button>
+							th:href="@{/vehicles/list}">Cancel</button>
 					</form>
 				</div>
 			</div>
