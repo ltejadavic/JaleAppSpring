@@ -38,13 +38,12 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/vehicles/list}">
+				th:href="@{/conductors/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleAPP Vehiculos</div>
+				<div class="sidebar-brand-text mx-2">JaleAPP Conductores</div>
 			</a>
-			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -62,55 +61,54 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
-
-				</div>
-				</div>	
-				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>
+
+					</div>
+				</div>
+
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/states/list}">Estados de
+							viaje</a>
 
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
+						<a class="collapse-item" th:href="@{/viajes/list}">Viajes </a>
+					</div>
+
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
+					</div>
+
+				</div>
+
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservas/list}">Reservas
 						</a>
 					</div>
 
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
-					</div>
-
-				</div>
-				
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
-					</div>
-
-				</div>
-				</li>
+				</div></li>
 
 
 
@@ -186,8 +184,27 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Vehiculos</h1>
-					<a th:href="@{/vehicles/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Conductores</h1>
+
+					<form th:action="@{/conductors/find}" method="post"
+						th:object="${conductor}">
+						<div class="form-group">
+
+							<label for=cat>Buscar:</label>
+							<div class="col-sm-12">
+								<input type="text" class="form-control"
+									th:field="*{nameConductor}" id="cat"
+									placeholder="Ingrese nombre del conductor"></input>
+								<div align="right">
+									<button type="submit" class="btn btn-danger">Buscar</button>
+									<a href="/conductors/list" class="btn btn-dark">Cancelar</a>
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+
 
 
 
@@ -197,23 +214,35 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Placa</th>
-								<th scope="col">Revision</th>
-								<th scope="col">Marca</th>
-								<th scope="col">Conductor</th>
 								<th scope="col">DNI</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Email</th>
+								<!--<th scope="col">Direccion</th>-->
+								<!--<th scope="col">TIU</th>-->
+								<th scope="col">Descripcion</th>
+								<th scope="col">Numero de Cuenta</th>
+								<th scope="col">Total de saldo</th>
+								<th scope="col">Operacion</th>
+								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="e: ${listaVehiculos}">
-								<td th:text="${e.idVehiculo}"></td>
-								<td th:text="${e.placaVehiculo}"></td>
-								<td th:text="${e.revisionVehiculo}"></td>
-								<td th:text="${e.marcaVehiculo}"></td>
-								<td th:text="${e.conductor.nameConductor}"></td>
-								<td th:text="${e.conductor.DNI}"></td>
-								<td><a th:href="@{/vehicles/delete?id=}+${e.idVehiculo}"
+							<tr th:each="e: ${listaConductores}">
+								<td th:text="${e.idConductor}"></td>
+								<td th:text="${e.DNI}"></td>
+								<td th:text="${e.nameConductor}"></td>
+								<!--<td th:text="${e.emailConductor}"></td>-->
+								<td th:text="${e.addressConductor}"></td>
+								<!--<td th:text="${e.TIU}"></td>-->
+								<td th:text="${e.descriptionConductor}"></td>
+								<td th:text="${e.accountNumber}"></td>
+								<td th:text="${(e.balanceFavor)-(e.balanceDebt)}"></td>
+
+								<td><a th:href="@{/conductors/delete?id=}+${e.idConductor}"
 									class="btn btn-danger"><i class="fa fa-trash"
+										aria-hidden="true"></i></a></td>
+								<td><a th:href="@{'/conductors/detalle/'+${e.idConductor}}"
+									class="btn btn-danger"><i class="fa fa-pen"
 										aria-hidden="true"></i></a></td>
 
 							</tr>
@@ -270,7 +299,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/vehicles/list}">Cancel</button>
+							th:href="@{/passengers/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>202101</title>
+<title>JaleApp</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -34,27 +33,23 @@
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/vehicles/list}">
+				th:href="@{/passengers/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleAPP Vehiculos</div>
+				<div class="sidebar-brand-text mx-2">JaleApp Pasajero</div>
 			</a>
-			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
-
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -102,7 +97,6 @@
 					</div>
 
 				</div>
-				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -111,11 +105,6 @@
 
 				</div>
 				</li>
-
-
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -162,6 +151,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -170,8 +160,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -186,42 +176,121 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Vehiculos</h1>
-					<a th:href="@{/vehicles/new/}" class="btn btn-danger btn-xs">Nuevo</a>
-
-
+					<h1 class="h3 mb-4 text-gray-800">Registrar Pasajero</h1>
 
 					<hr class="sidebar-divider">
+					<div th:object="${passenger}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-					<table class="table table-striped">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Placa</th>
-								<th scope="col">Revision</th>
-								<th scope="col">Marca</th>
-								<th scope="col">Conductor</th>
-								<th scope="col">DNI</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="e: ${listaVehiculos}">
-								<td th:text="${e.idVehiculo}"></td>
-								<td th:text="${e.placaVehiculo}"></td>
-								<td th:text="${e.revisionVehiculo}"></td>
-								<td th:text="${e.marcaVehiculo}"></td>
-								<td th:text="${e.conductor.nameConductor}"></td>
-								<td th:text="${e.conductor.DNI}"></td>
-								<td><a th:href="@{/vehicles/delete?id=}+${e.idVehiculo}"
-									class="btn btn-danger"><i class="fa fa-trash"
-										aria-hidden="true"></i></a></td>
+					<form th:action="@{/passengers/save}" th:object="${passenger}"
+						method="post">
+						<div class="form-group row">
+							<label for="DNI" class="col-sm-2 col-form-label">DNI </label>
+							<div class="col-sm-6">
+								<input type="number" th:field="*{DNI}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></small>
+							</div>
+						</div>
 
-							</tr>
-						</tbody>
-					</table>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Pasajero:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{namePasajero}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('namePasajero')}"
+									th:errors="*{namePasajero}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="address" class="col-sm-2 col-form-label">Email: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{emailPasajero}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('emailPasajero')}" th:errors="*{emailPasajero}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="address" class="col-sm-2 col-form-label">Direccion: </label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{addressPasajero}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('addressPasajero')}" th:errors="*{addressPasajero}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="tiu" class="col-sm-2 col-form-label">TIU:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{TIU}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('TIU')}"
+									th:errors="*{TIU}"></small>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label for="account" class="col-sm-2 col-form-label">Numero de Cuenta:
+							</label>
+							<div class="col-sm-6">
+								<input type="number" th:field="*{accountNumber}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('accountNumber')}"
+									th:errors="*{accountNumber}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="saldo" class="col-sm-2 col-form-label">Balance a favor: </label>
+							<div class="col-sm-6">
+								<input type="number" th:field="*{balanceFavor}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('balanceFavor')}"
+									th:errors="*{balanceFavor}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="deuda" class="col-sm-2 col-form-label">Deuda: </label>
+							<div class="col-sm-6">
+								<input type="number" th:field="*{balanceDebt}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('balanceDebt')}"
+									th:errors="*{balanceDebt}"></small>
+							</div>
+						</div>						
+						
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/passengers/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+
+					</form>
 
 					<p th:text="${mensaje}" class="form-text text-success"></p>
-
 				</div>
 				<!-- /.container-fluid -->
 
@@ -263,14 +332,14 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/vehicles/list}">Cancel</button>
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

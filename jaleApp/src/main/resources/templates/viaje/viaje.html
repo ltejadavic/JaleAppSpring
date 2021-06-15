@@ -57,18 +57,30 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-					</div>
-					
+				</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de Viaje
-						</a>
-					</div>
+						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
 				</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
+
+				</div>
+				</div>	
 				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+
+					</div>
+				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -77,8 +89,22 @@
 					</div>
 
 				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
+						</a>
+					</div>
+
+				</div>
 				
-				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
+					</div>
+
+				</div>
 				</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -186,18 +212,20 @@
 							</div>
 						</div>
 
+
+						
 						<div class="form-group row">
-							<label for="price" class="col-sm-2 col-form-label">Costo del viaje:
-							</label>
+							<label for="reserva" class="col-sm-2 col-form-label">Reservacion:</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{priceViaje}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('priceViaje')}"
-									th:errors="*{priceViaje}"></small>
+								<select class="custom-select custom-select-sm"
+									th:field="*{reservacion}">
+									<option th:each="reservacion : ${listaReservas}"
+										th:value="${reservacion.id}" th:utext="${reservacion.rut.Fruta}" />
+								</select>
 							</div>
 						</div>
+						
+						
 						<div class="form-group row">
 							<label for="state" class="col-sm-2 col-form-label">Estado de Viaje:</label>
 							<div class="col-sm-6">
