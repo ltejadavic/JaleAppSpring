@@ -62,15 +62,6 @@
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
 					</div>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/passengers/listFind}">Buscar Pasajeros</a>
-
-					</div>
-				</div>
-					
-					
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -193,8 +184,25 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Pasajeros</h1>
-					<a th:href="@{/passengers/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Buscar Pasajeros</h1>
+					<form th:action="@{/passengers/find}" method="post"
+						th:object="${passenger}">
+						<div class="form-group">
+
+							<label for=cat>Buscar:</label>
+							<div class="col-sm-12">
+								<input type="text" class="form-control"
+									th:field="*{namePasajero}" id="cat"
+									placeholder="Ingrese nombre del pasajero"></input>
+								<div align="right">
+									<button type="submit" class="btn btn-danger">Buscar</button>
+									<a href="/passengers/list" class="btn btn-dark">Cancelar</a>
+								</div>
+							</div>
+
+						</div>
+
+					</form>
 
 
 
