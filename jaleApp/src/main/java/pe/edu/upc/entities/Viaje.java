@@ -8,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Viaje")
@@ -23,28 +25,36 @@ public class Viaje {
 	@Column(name = "nameViaje", nullable = false, length = 50)
 	private String nameViaje;
 	
-	@NotNull(message = "Ingrese el costo de su viaje")
-	@Column(name = "priceViaje", nullable = false)
-	private int priceViaje;
+
 	@NotNull(message = "Ingrese Estado de viaje")
 	@ManyToOne
 	@JoinColumn(name="idState",nullable=false)
 	private StateViaje state;
+	
+	@NotNull(message = "Ingrese reservacion")
+	@ManyToOne
+	@JoinColumn(name="id",nullable=false)
+	private Reservacion reservacion;
 
 
 	public Viaje() {
 		super();
 	}
 
-	
 
-	public Viaje(int idViaje,String nameViaje,int priceViaje, StateViaje state) {
+	
+	
+	
+	public Viaje(int idViaje,String nameViaje,StateViaje state,Reservacion reservacion) {
 		super();
 		this.idViaje = idViaje;
 		this.nameViaje = nameViaje;
-		this.priceViaje = priceViaje;
+		
 		this.state = state;
+		this.reservacion = reservacion;
 	}
+
+
 
 
 
@@ -68,14 +78,7 @@ public class Viaje {
 	}
 
 
-	public int getPriceViaje() {
-		return priceViaje;
-	}
-
-
-	public void setPriceViaje(int priceViaje) {
-		this.priceViaje = priceViaje;
-	}
+	
 
 
 	public StateViaje getState() {
@@ -86,6 +89,20 @@ public class Viaje {
 	public void setState(StateViaje state) {
 		this.state = state;
 	}
+
+
+	public Reservacion getReservacion() {
+		return reservacion;
+	}
+
+
+	public void setReservacion(Reservacion reservacion) {
+		this.reservacion = reservacion;
+	}
+
+	
+
+	
 
 	
 	
