@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Viaje;
+import pe.edu.upc.service.IReservaService;
 import pe.edu.upc.service.IStateViajeService;
 import pe.edu.upc.service.IViajeService;
 
@@ -24,14 +25,20 @@ import pe.edu.upc.service.IViajeService;
 public class ViajeController {
 	@Autowired
 	private IViajeService vService;
+	
 	@Autowired
 	private IStateViajeService sService;
+	
+	@Autowired
+	private IReservaService reService;
+	
 	
 	@GetMapping("/new")
 	public String newViaje(Model model) {
 		
 		model.addAttribute("viaje",new Viaje());
 		model.addAttribute("listaState",sService.list());
+		model.addAttribute("listaReservas",reService.list());
 		
 		return "viaje/viaje";
 	}
@@ -41,10 +48,12 @@ public class ViajeController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("listaState",sService.list());
+			model.addAttribute("listaReservas",reService.list());
 			return "viaje/viaje";
 		}else {
 			vService.insert(vi);
 			model.addAttribute("listaState",sService.list());
+			model.addAttribute("listaReservas",reService.list());
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
 			return "redirect:/viajes/list";

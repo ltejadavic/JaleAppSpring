@@ -15,62 +15,70 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entities.Pasajero;
+import pe.edu.upc.entities.Ruta;
 import pe.edu.upc.service.IPasajeroService;
-
+import pe.edu.upc.service.IRutaService;
 @Controller
-@RequestMapping("/passengers")
-public class PasajeroController {
+@RequestMapping("/rutas")
+public class RutaController {
+	@Autowired
+	private IRutaService rService;
+	
 	@Autowired
 	private IPasajeroService pService;
-
-	/* localhost:8082/passengers/ */
+	
 	@GetMapping("/new")
-	public String newPassenger(Model model) {
-		model.addAttribute("passenger", new Pasajero());
-
-		return "passenger/passenger";
+	public String newRuta(Model model) {
+		
+		model.addAttribute("ruta", new Ruta());
+		model.addAttribute("listPasajero", pService.list());
+		return "ruta/ruta";
 	}
-
+	
 	@PostMapping("/save")
-	public String saveMedic(@Valid @ModelAttribute(value = "passenger") Pasajero pas, BindingResult result, Model model,
-			SessionStatus status) throws Exception {
-
+	public String saveRute(@Valid @ModelAttribute(value = "ruta")Ruta ru,BindingResult result,
+	Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			return "passenger/passenger";
+			model.addAttribute("listPasajero", pService.list());
+			return "ruta/ruta";
 		} else {
-			pService.insert(pas);
+			rService.insert(ru);
+			model.addAttribute("listPasajero", pService.list());
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
-			return "redirect:/passengers/list";
+			return "redirect:/rutas/list";
 		}
-
+		
 	}
-
+	
 	@GetMapping("/list")
-	public String listPasajero(Model model) {
+	public String listConductor(Model model) {
 		try {
-			model.addAttribute("listaPasajeros", pService.list());
+			model.addAttribute("listaRutas", rService.list());
 		} catch (Exception e) {
-			model.addAttribute("error en controller pasajero", e.getMessage());
+			model.addAttribute("error en controller ruta", e.getMessage());
 		}
 
-		return "passenger/listPassenger";
+		return "ruta/listRuta";
 
 	}
-
-	@RequestMapping("/delete")
-	public String deletePasajero(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	@GetMapping("/delete")
+	public String deleteRuta(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if (id != null && id > 0) {
-				pService.delete(id);
-				model.put("mensaje", "Selimino Correctamente");
+				rService.delete(id);
+				model.put("mensaje", "Se elimino Correctamente");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			model.put("mensaje", "Ocurrio un error");
 		}
 
-		return "redirect:/passengers/list";
+		return "redirect:/rutas/list";
 	}
+	
+	
+	
+	
+	
 }
