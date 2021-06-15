@@ -38,13 +38,12 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/vehicles/list}">
+				th:href="@{/states/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleAPP Vehiculos</div>
+				<div class="sidebar-brand-text mx-2">JaleAPP Pasajeros</div>
 			</a>
-			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -56,23 +55,19 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+			</a><div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
-
-				</div>
-				</div>
-				
+					</div>
+					</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>						
+						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
 				</div>
 				</div>
-						
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
@@ -80,22 +75,25 @@
 
 				</div>
 				</div>
+			
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+
+					</div>
+				</div>
 				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viaje</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
+						</a>
+					</div>
 
-				</div>
 				</div>
 				
-								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estado de Viaje</a>						
-
-				</div>
-				</div>	
+				
 				</li>
 
 
@@ -172,8 +170,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Vehiculos</h1>
-					<a th:href="@{/vehicles/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Estados de viaje </h1>
+					<a th:href="@{/states/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 
 
@@ -183,22 +181,16 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Placa</th>
-								<th scope="col">Revision</th>
-								<th scope="col">Marca</th>
-								<th scope="col">Conductor</th>
-								<th scope="col">DNI</th>
+								<th scope="col">Descripcion de Estado de viaje</th>
+								
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="e: ${listaVehiculos}">
-								<td th:text="${e.idVehiculo}"></td>
-								<td th:text="${e.placaVehiculo}"></td>
-								<td th:text="${e.revisionVehiculo}"></td>
-								<td th:text="${e.marcaVehiculo}"></td>
-								<td th:text="${e.conductor.nameConductor}"></td>
-								<td th:text="${e.conductor.DNI}"></td>
-								<td><a th:href="@{/vehicles/delete?id=}+${e.idVehiculo}"
+							<tr th:each="e: ${listaState}">
+								<td th:text="${e.idState}"></td>
+								<td th:text="${e.Dstate}"></td>
+								
+								<td><a th:href="@{/states/delete?id=}+${e.idState}"
 									class="btn btn-danger"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 
@@ -256,7 +248,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/vehicles/list}">Cancel</button>
+							th:href="@{/states/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

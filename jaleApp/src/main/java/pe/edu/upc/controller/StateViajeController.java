@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,63 +15,66 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entities.Pasajero;
-import pe.edu.upc.service.IPasajeroService;
+import pe.edu.upc.entities.StateViaje;
+import pe.edu.upc.service.IStateViajeService;
 
 @Controller
-@RequestMapping("/passengers")
-public class PasajeroController {
+@RequestMapping("/states")
+public class StateViajeController {
+
 	@Autowired
-	private IPasajeroService pService;
+	private IStateViajeService svService;
 
-	/* localhost:8083/passengers/ */
 	@GetMapping("/new")
-	public String newPassenger(Model model) {
-		model.addAttribute("passenger", new Pasajero());
-
-		return "passenger/passenger";
+	public String newState(Model model) {
+		model.addAttribute("state", new StateViaje());
+		return "state/state";
 	}
 
 	@PostMapping("/save")
-	public String savePassenger(@Valid @ModelAttribute(value = "passenger") Pasajero pas, BindingResult result,
-			Model model, SessionStatus status) throws Exception {
-
-		if (result.hasErrors()) {
-			return "passenger/passenger";
-		} else {
-			pService.insert(pas);
+	public String saveState(@Valid @ModelAttribute(value = "state") StateViaje sv, BindingResult result, Model model,
+			SessionStatus status) throws Exception {
+		
+		if(result.hasErrors()) {
+			return "state/state";
+		}else {
+			svService.insert(sv);
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
-			return "redirect:/passengers/list";
+			return "redirect:/states/list";
 		}
-
+		
+		
 	}
-
-	@Secured("ROLE_PASSENGER")
+	
+	
 	@GetMapping("/list")
 	public String listPasajero(Model model) {
 		try {
-			model.addAttribute("listaPasajeros", pService.list());
+			model.addAttribute("listaState", svService.list());
 		} catch (Exception e) {
-			model.addAttribute("error en controller pasajero", e.getMessage());
+			model.addAttribute("error en controller state viaje", e.getMessage());
 		}
 
-		return "passenger/listPassenger";
+		return "state/listState";
 
 	}
-
+	
 	@RequestMapping("/delete")
-	public String deletePasajero(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	public String deleteState(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if (id != null && id > 0) {
-				pService.delete(id);
-				model.put("mensaje", "Se elimino Correctamente");
+				svService.delete(id);
+				model.put("mensaje", "Selimino Correctamente");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			model.put("mensaje", "Ocurrio un error");
 		}
 
-		return "redirect:/passengers/list";
+		return "redirect:/states/list";
 	}
+	
+	
+
 }

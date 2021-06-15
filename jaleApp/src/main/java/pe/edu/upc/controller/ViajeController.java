@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,68 +15,74 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entities.Vehiculo;
-import pe.edu.upc.service.IConductorService;
-import pe.edu.upc.service.IVehiculoService;
+import pe.edu.upc.entities.Viaje;
+import pe.edu.upc.service.IStateViajeService;
+import pe.edu.upc.service.IViajeService;
 
 @Controller
-@RequestMapping("/vehicles")
-public class VehiculoController {
-
+@RequestMapping("/viajes")
+public class ViajeController {
 	@Autowired
-	private IVehiculoService vService;
-
+	private IViajeService vService;
 	@Autowired
-	private IConductorService cService;
-
-	/* localhost: 8083/vehicles/ */
+	private IStateViajeService sService;
+	
 	@GetMapping("/new")
-	public String newSpecialty(Model model) {
-		model.addAttribute("vehiculo", new Vehiculo());
-		model.addAttribute("listaConductor", cService.list());
-
-		return "vehiculo/vehiculo";
+	public String newViaje(Model model) {
+		
+		model.addAttribute("viaje",new Viaje());
+		model.addAttribute("listaState",sService.list());
+		
+		return "viaje/viaje";
 	}
-
 	@PostMapping("/save")
-	public String saveVehiculo(@Valid @ModelAttribute(value = "vehiculo") Vehiculo vehiculo, BindingResult result,
-			Model model, SessionStatus status) throws Exception {
-
+	public String saveViaje(@Valid @ModelAttribute(value = "viaje") Viaje vi,BindingResult result,
+			Model model, SessionStatus status) {
+		
 		if (result.hasErrors()) {
-			return "vehiculo/vehiculo";
-		} else {
-			vService.insert(vehiculo);
+			model.addAttribute("listaState",sService.list());
+			return "viaje/viaje";
+		}else {
+			vService.insert(vi);
+			model.addAttribute("listaState",sService.list());
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
-			return "redirect:/vehicles/list";
+			return "redirect:/viajes/list";
 		}
+			
+		
 	}
-
-	@Secured("ROLE_DRIVER")
+	
+	
+	
+	
 	@GetMapping("/list")
-	public String listVehiculo(Model model) {
+	public String listViaje(Model model) {
+
 		try {
-			model.addAttribute("listaVehiculos", vService.list());
+			
+			model.addAttribute("listViaje", vService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-
-		return "vehiculo/listVehiculo";
+		return "viaje/listViaje";
 	}
-
+	
 	@RequestMapping("/delete")
-	public String deleteVehiculo(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	public String deleteState(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if (id != null && id > 0) {
 				vService.delete(id);
-				model.put("mensaje", "Se elimino correctamente");
+				model.put("mensaje", "Selimino Correctamente");
 			}
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			model.put("mensaje", "Ocurrio un error");
 		}
 
-		return "redirect:/vehicles/list";
+		return "redirect:/viajes/list";
 	}
+	
+	
+	
 }
