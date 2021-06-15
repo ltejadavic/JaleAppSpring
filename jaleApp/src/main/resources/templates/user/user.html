@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>JaleApp</title>
+<title>JALEAPP</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -36,7 +36,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/states/list}">
+				th:href="@{/passengers/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -52,7 +52,7 @@
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
@@ -72,22 +72,22 @@
 
 				</div>
 				</div>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/viajes/list}">Viaje</a>						
 
 				</div>
-				</div>				
-			
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
-
-					</div>
 				</div>
 				
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/states/list}">Estado de Viaje</a>						
+
+				</div>
+				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
@@ -102,9 +102,8 @@
 						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>						
 
 				</div>
-				</div>
-				
-				</li>
+				</div>							
+					</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -176,70 +175,95 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Registrar Estado</h1>
+					<h1 class="h3 mb-4 text-gray-800">Usuario</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${state}" th:remove="tag">
+					<div th:object="${user}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/states/save}" th:object="${state}"
-						method="post">
+					<form th:action="@{/users/save}" th:object="${user}" method="post">
 						<div class="form-group row">
-							<label for="idState" class="col-sm-2 col-form-label">ID </label>
+							<label for="id" class="col-sm-2 col-form-label">Código</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{idState}" class="form-control"
+								<input type="number" th:field="*{id}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idState')}" th:errors="*{idState}"></small>
+									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="state" class="col-sm-2 col-form-label">Estado:
-							</label>
+							<label for="username" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Dstate}"
+								<input type="text" th:field="*{username}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+
+							<label for="password" class="col-sm-2 col-form-label">Password</label>
+							<div class="col-sm-6">
+								<input type="password" th:field="*{password}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Dstate')}"
-									th:errors="*{Dstate}"></small>
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}"></small>
 							</div>
 						</div>
-
-				
 						<div class="form-group row">
+
+
+							<label for="estado" class="col-sm-2 col-form-label">Estado</label>
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/states/list" class="btn btn-danger">Cancelar</a>
+								<input type="checkbox" th:field="*{enabled}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></small>
 							</div>
 						</div>
-
-					</form>
-
-					<p th:text="${mensaje}" class="form-text text-success"></p>
 				</div>
-				<!-- /.container-fluid -->
 
-			</div>
-			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2021</span>
+
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+						<a href="/users/list" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+
+				</form>
+
+				<p th:text="${mensaje}" class="form-text text-success"></p>
+
+
+
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; JALE 2021</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -270,7 +294,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/categories/list}">Cancel</button>
+							th:href="@{/passengers/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

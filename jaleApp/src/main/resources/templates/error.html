@@ -87,7 +87,22 @@
 						<a class="collapse-item" th:href="@{/states/list}">Estado de Viaje</a>						
 
 				</div>
-				</div>		
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>						
+
+				</div>
+				</div>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>						
+
+				</div>
+				</div>							
 					</li>
 
 			<!-- Divider -->
@@ -191,7 +206,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/categories/list}">Cancel</button>
+							th:href="@{/passengers/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

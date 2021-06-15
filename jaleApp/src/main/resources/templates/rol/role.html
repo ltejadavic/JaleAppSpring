@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>JaleApp</title>
+<title>JALEAPP</title>
 
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -36,35 +36,41 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/states/list}">
+				th:href="@{/vehicles/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleApp Pasajero</div>
+				<div class="sidebar-brand-text mx-2">JaleAPP Vehiculos</div>
 			</a>
+			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
+
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
+				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
-					</div>
-					</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
 				</div>
 				</div>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>						
+
+				</div>
+				</div>
+						
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
@@ -72,20 +78,21 @@
 
 				</div>
 				</div>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/viajes/list}">Viaje</a>						
 
 				</div>
-				</div>				
-			
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				</div>
+				
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/states/list}">Estado de Viaje</a>						
 
-					</div>
+				</div>
 				</div>
 				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -102,8 +109,7 @@
 						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>						
 
 				</div>
-				</div>
-				
+				</div>						
 				</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -176,70 +182,79 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Registrar Estado</h1>
+					<h1 class="h3 mb-4 text-gray-800">Rol</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${state}" th:remove="tag">
+					<div th:object="${role}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/states/save}" th:object="${state}"
-						method="post">
+					<form th:action="@{/roles/save}" th:object="${role}" method="post">
 						<div class="form-group row">
-							<label for="idState" class="col-sm-2 col-form-label">ID </label>
+							<label for="id" class="col-sm-2 col-form-label">Código</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{idState}" class="form-control"
+								<input type="text" th:field="*{id}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idState')}" th:errors="*{idState}"></small>
+									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="state" class="col-sm-2 col-form-label">Estado:
-							</label>
+							<label for="rol" class="col-sm-2 col-form-label">Rol</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Dstate}"
-									class="form-control"
+								<input type="text" th:field="*{rol}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Dstate')}"
-									th:errors="*{Dstate}"></small>
+									th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></small>
 							</div>
 						</div>
-
-				
 						<div class="form-group row">
+							<label for="category">Usuario:</label>
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/states/list" class="btn btn-danger">Cancelar</a>
+								<select class="form-control" th:field="*{user.id}">
+									<option th:each="u: ${listUsers}" th:value="${u.id}"
+										th:text="${u.username}" th:selected="(${u.id} == *{user.id})"></option>
+								</select>
 							</div>
 						</div>
-
-					</form>
-
-					<p th:text="${mensaje}" class="form-text text-success"></p>
 				</div>
-				<!-- /.container-fluid -->
 
-			</div>
-			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2021</span>
+
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+						<a href="/roles/list" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+
+				</form>
+
+				<p th:text="${mensaje}" class="form-text text-success"></p>
+
+
+
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2020</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -270,7 +285,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/categories/list}">Cancel</button>
+							th:href="@{/passengers/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -20,6 +22,9 @@ public class Role implements Serializable {
 	private Long id;
 
 	private String rol;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Users user;
 
 	public Long getId() {
 		return id;
@@ -35,6 +40,14 @@ public class Role implements Serializable {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 }
