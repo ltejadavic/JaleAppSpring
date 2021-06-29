@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,27 +29,28 @@ public class Vehiculo {
 	@Column(name = "revisionVehiculo", nullable = false, length = 50)
 	private String revisionVehiculo;
 
-	@NotEmpty(message = "Ingrese marca del vehiculo")
-	@Column(name = "marcaVehiculo", nullable = false, length = 50)
-	private String marcaVehiculo;
-
 	@ManyToOne
 	@JoinColumn(name = "idConductor", nullable = false)
 	private Conductor conductor;
+	
+	@NotNull(message = "Ingrese Marca de Vehiculo")
+	@ManyToOne
+	@JoinColumn(name="idMarca",nullable=false)
+	private Marca marca;
 
 	public Vehiculo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vehiculo(int idVehiculo, String placaVehiculo, String revisionVehiculo, String marcaVehiculo,
-			Conductor conductor) {
+	public Vehiculo(int idVehiculo, String placaVehiculo, String revisionVehiculo,
+			Conductor conductor, Marca marca) {
 		super();
 		this.idVehiculo = idVehiculo;
 		this.placaVehiculo = placaVehiculo;
 		this.revisionVehiculo = revisionVehiculo;
-		this.marcaVehiculo = marcaVehiculo;
 		this.conductor = conductor;
+		this.marca = marca;
 	}
 
 	public int getIdVehiculo() {
@@ -75,14 +77,6 @@ public class Vehiculo {
 		this.revisionVehiculo = revisionVehiculo;
 	}
 
-	public String getMarcaVehiculo() {
-		return marcaVehiculo;
-	}
-
-	public void setMarcaVehiculo(String marcaVehiculo) {
-		this.marcaVehiculo = marcaVehiculo;
-	}
-
 	public Conductor getConductor() {
 		return conductor;
 	}
@@ -90,5 +84,14 @@ public class Vehiculo {
 	public void setConductor(Conductor conductor) {
 		this.conductor = conductor;
 	}
+	
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
 
 }

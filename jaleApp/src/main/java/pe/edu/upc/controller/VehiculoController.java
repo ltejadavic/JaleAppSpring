@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Vehiculo;
 import pe.edu.upc.service.IConductorService;
+import pe.edu.upc.service.IMarcaService;
 import pe.edu.upc.service.IVehiculoService;
 
 @Controller
@@ -28,12 +29,16 @@ public class VehiculoController {
 
 	@Autowired
 	private IConductorService cService;
+	
+	@Autowired
+	private IMarcaService mService;
 
 	/* localhost: 8083/vehicles/ */
 	@GetMapping("/new")
 	public String newSpecialty(Model model) {
 		model.addAttribute("vehiculo", new Vehiculo());
 		model.addAttribute("listaConductor", cService.list());
+		model.addAttribute("listaBrand", mService.list());
 
 		return "vehiculo/vehiculo";
 	}
@@ -43,9 +48,13 @@ public class VehiculoController {
 			Model model, SessionStatus status) throws Exception {
 
 		if (result.hasErrors()) {
+			model.addAttribute("listaConductor",cService.list());
+			model.addAttribute("listaBrand",mService.list());
 			return "vehiculo/vehiculo";
 		} else {
 			vService.insert(vehiculo);
+			model.addAttribute("listaConductor",cService.list());
+			model.addAttribute("listaBrand",mService.list());
 			model.addAttribute("mensaje", "Se realizo correctamente");
 			status.setComplete();
 			return "redirect:/vehicles/list";

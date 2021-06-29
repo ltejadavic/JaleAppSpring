@@ -31,6 +31,18 @@ public class ReservaServiceImpl implements IReservaService{
 		// TODO Auto-generated method stub
 		reR.findById(id);
 	}
+
+	@Override
+	public List<String[]> rutasmayor() {
+		// TODO Auto-generated method stub
+		return reR.rutasmayor();
+	}
+
+	@Override
+	public List<String[]> conductormayor() {
+		// TODO Auto-generated method stub
+		return reR.conductormayor();
+	}
 	
 	
 

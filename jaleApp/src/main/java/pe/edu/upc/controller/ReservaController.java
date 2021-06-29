@@ -33,6 +33,12 @@ public class ReservaController {
 	@Autowired
 	private IConductorService coService;
 
+	@RequestMapping("/reports")
+	public String Report()
+	{
+		return "reports/reporteReserva";
+	}
+	
 	@GetMapping("/new")
 	public String newReserva(Model model) {
 
@@ -85,6 +91,21 @@ public class ReservaController {
 		}
 
 		return "redirect:/reservas/list";
+	}
+	
+	@GetMapping("/listRuta")
+	public String listrutaM(Map<String, Object> model) {
+		model.put("listReservasRuta", reService.rutasmayor());
+
+		return "reports/listReservaRuta";
+		
+	}
+	@GetMapping("/listCond")
+	public String listcondM(Map<String, Object> model) {
+		model.put("listReservasCond", reService.conductormayor());
+
+		return "reports/listReservaCon";
+		
 	}
 
 }

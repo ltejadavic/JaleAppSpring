@@ -12,5 +12,9 @@ public interface IReservaService {
 	
 	public void delete(int id);
 	
+	public List<String[]>rutasmayor();
+	
+	public List<String[]>conductormayor();
+	
 	
 }
