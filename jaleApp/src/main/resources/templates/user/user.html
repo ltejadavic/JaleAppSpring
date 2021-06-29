@@ -217,15 +217,7 @@
 					</div>
 
 					<form th:action="@{/users/save}" th:object="${user}" method="post">
-						<div class="form-group row">
-							<label for="id" class="col-sm-2 col-form-label">Código</label>
-							<div class="col-sm-6">
-								<input placeholder="Ingrese su codigo de usuario" type="number" th:field="*{id}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
-							</div>
-						</div>
+		
 						<div class="form-group row">
 							<label for="username" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">

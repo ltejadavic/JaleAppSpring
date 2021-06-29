@@ -15,7 +15,7 @@ public interface ReservaRepository extends JpaRepository<Reservacion, Integer>{
 			nativeQuery = true )
 	public List<String[]>rutasmayor();
 	
-	@Query( value="select co.name_conductor,count(co.id_conductor) from Conductor co join Reservacion re on co.id_conductor=re.id_conductor group by co.id_conductor limit 2",
+	@Query( value="select co.name_conductor,count(co.id_conductor) from Conductor co join Reservacion re on co.id_conductor=re.id_conductor group by co.id_conductor order by 2 desc limit 2",
 			nativeQuery = true )
 	public List<String[]>conductormayor();
 	

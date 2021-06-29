@@ -220,15 +220,7 @@
 					</div>
 
 					<form th:action="@{/roles/save}" th:object="${role}" method="post">
-						<div class="form-group row">
-							<label for="id" class="col-sm-2 col-form-label">Código</label>
-							<div class="col-sm-6">
-								<input placeholder="Ingrese el codigo de rol" type="text" th:field="*{id}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
-							</div>
-						</div>
+						
 						<div class="form-group row">
 							<label for="rol" class="col-sm-2 col-form-label">Rol</label>
 							<div class="col-sm-6">
