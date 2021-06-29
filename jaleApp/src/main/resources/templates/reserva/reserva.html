@@ -57,54 +57,71 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				</div>
+
+
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/reservas/list}">Reservas
+							</a>
+						</div>
+
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/viajes/list}">Viajes </a>
+					</div>
 
 				</div>
-				</div>	
+				</div>
+
+				
 				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>
 
 					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
-						</a>
-					</div>
-
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
-					</div>
-
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
-					</div>
-
 				</div>
 				
+				
+				</li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+				</a>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/calificacions/reports}">Reportes de calificacion </a>
+					</div>
+
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservas/reports}">Reportes de reservacion </a>
+					</div>
+
+				</div>
 				
 				</li>
 
@@ -178,7 +195,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Registrar Ruta</h1>
+					<h1 class="h3 mb-4 text-gray-800">Registrar Reserva</h1>
 
 					<hr class="sidebar-divider">
 					<div th:object="${reserva}" th:remove="tag">
@@ -199,7 +216,7 @@
 								<select class="custom-select custom-select-sm"
 									th:field="*{rut}">
 									<option th:each="rut : ${listaRutas}"
-										th:value="${rut.Cruta}" th:utext="${rut.Druta}" />
+										th:value="${rut.Cruta}" th:utext="${rut.Fruta}" />
 								</select>
 							</div>
 						</div>

@@ -36,11 +36,11 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/vehicles/list}">
+				th:href="@{/states/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleApp Vehiculos</div>
+				<div class="sidebar-brand-text mx-2">JaleApp Pasajero</div>
 			</a>
 
 			<!-- Divider -->
@@ -57,59 +57,64 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
 
-				</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/brands/list}">Marca</a>						
 
-				</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/conductors/listFind}">Buscar conductores</a>						
 
-				</div>
-				</div>
-				</div>
-					
-
-				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
 					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/reservas/list}">Reservas
+							</a>
+						</div>
 
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/viajes/list}">Viajes </a>
+						</div>
+						<div id="collapseTwo" class="collapse"
+							aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								<a class="collapse-item" th:href="@{/states/list}">Estados
+									Viajes </a>
+							</div>
+
+						</div>
+						<div id="collapseTwo" class="collapse"
+							aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								<a class="collapse-item" th:href="@{/calificacions/list}">Calificacion </a>
+							</div>
+
+						</div>
+					</div>
 				</div>
-				
+
+
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Users</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>
 
-				</div>
-				</div>
-				
-				
-					</li>
-					<li class="nav-item"><a class="nav-link collapsed" href="#"
+					</div>
+				</div></li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
 				</a>
@@ -201,79 +206,66 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Registrar Vehiculo</h1>
+					<h1 class="h3 mb-4 text-gray-800">Registrar Calificacion</h1>
 
 					<hr class="sidebar-divider">
+					<div th:object="${calificacion}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-					<form th:action="@{/vehicles/save}" th:object="${vehiculo}"
-						method="post">
-						
+					<form th:action="@{/calificacions/save}"
+						th:object="${calificacion}" method="post">
+
 						<div class="form-group row">
-							<label for="idState" class="col-sm-2 col-form-label">ID </label>
+							<label for="calificacion" class="col-sm-2 col-form-label">Calificaion: </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{idVehiculo}" class="form-control"
+								<input min="0" max="10" placeholder="Ingrese calificacion"
+									type="number" th:field="*{calificacion}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idVehiculo')}" th:errors="*{idVehiculo}"></small>
+									th:if="${#fields.hasErrors('calificacion')}"
+									th:errors="*{calificacion}"></small>
+									<label for="cali" class="">(0 muy mal - 10 excelente) </label>
+									 
 							</div>
 						</div>
-						
 						<div class="form-group row">
-							<label for="Placa" class="col-sm-2 col-form-label">Placa:
+							<label for="calificacion" class="col-sm-2 col-form-label">Descripcion:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{placaVehiculo}"
-									class="form-control"
+								<input placeholder="Ingrese la descripcion de viaje" type="text"
+									th:field="*{descripcion}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('placaVehiculo')}"
-									th:errors="*{placaVehiculo}"></small>
+									th:if="${#fields.hasErrors('descripcion')}"
+									th:errors="*{descripcion}"></small>
 							</div>
 						</div>
 
-						<div class="form-group row">
-							<label for="Revision" class="col-sm-2 col-form-label">Revision
-								Tecnica: </label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{revisionVehiculo}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('revisionVehiculo')}"
-									th:errors="*{revisionVehiculo}"></small>
-							</div>
-						</div>
+
 
 						<div class="form-group row">
-							<label for="color" class="col-sm-2 col-form-label">Marca:
-							</label>
+							<label for="reserva" class="col-sm-2 col-form-label">Viaje:</label>
 							<div class="col-sm-6">
 								<select class="custom-select custom-select-sm"
-									th:field="*{marca}">
-									<option th:each="marca : ${listaBrand}"
-										th:value="${marca.idMarca}"
-										th:utext="${marca.nameMarca}+${marca.nameModelo}"/>
+									th:field="*{idViaje}">
+									<option th:each="idViaje : ${listaViaje}"
+										th:value="${idViaje.idViaje}"
+										th:utext="${idViaje.nameViaje}" />
 								</select>
 							</div>
 						</div>
 
-						<div class="form-group row">
-							<label for="color" class="col-sm-2 col-form-label">Conductor:
-							</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{conductor}">
-									<option th:each="conductor : ${listaConductor}"
-										th:value="${conductor.idConductor}"
-										th:utext="${conductor.nameConductor}" />
-								</select>
-							</div>
-						</div>
+
+						
 
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/vehicles/list" class="btn btn-danger">Cancelar</a>
+								<a href="/calificacions/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 
@@ -328,7 +320,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/conductors/list}">Cancel</button>
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

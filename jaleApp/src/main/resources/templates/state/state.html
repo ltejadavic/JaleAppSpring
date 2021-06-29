@@ -57,50 +57,80 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				</div>
+
+
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/reservas/list}">Reservas
+							</a>
+						</div>
 
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/viajes/list}">Viajes </a>
+						</div>
+						<div id="collapseTwo" class="collapse"
+							aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								<a class="collapse-item" th:href="@{/states/list}">Estados Viajes </a>
+							</div>
+
+						</div>
+						<div id="collapseTwo" class="collapse"
+							aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								<a class="collapse-item" th:href="@{/calificacions/list}">Calificacion </a>
+							</div>
+
+						</div>
+					</div>
 				</div>
-				</div>	
+
+				
 				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>
 
 					</div>
 				</div>
+				
+				</li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+				</a>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
-						</a>
-					</div>
-
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
+						<a class="collapse-item" th:href="@{/calificacions/reports}">Reportes de calificacion </a>
 					</div>
 
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
+						<a class="collapse-item" th:href="@{/reservas/reports}">Reportes de reservacion </a>
 					</div>
 
 				</div>
@@ -192,7 +222,7 @@
 						<div class="form-group row">
 							<label for="idState" class="col-sm-2 col-form-label">ID </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{idState}" class="form-control"
+								<input type="number" readonly=»readonly th:field="*{idState}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idState')}" th:errors="*{idState}"></small>
@@ -203,7 +233,7 @@
 							<label for="state" class="col-sm-2 col-form-label">Estado:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Dstate}"
+								<input placeholder="Ingrese el nombre del estado de viaje" type="text" th:field="*{Dstate}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

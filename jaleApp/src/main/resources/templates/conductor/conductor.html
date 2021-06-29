@@ -65,30 +65,31 @@
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
 				</div>
-				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
 
 				</div>
-				</div>	
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/brands/list}">Marca</a>						
+
+				</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/vehicles/listFind}">Buscar conductores</a>						
+
+				</div>
+				</div>
+				</div>
+					
+
 				
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
-
-					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
-						</a>
-					</div>
-
-				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -97,14 +98,36 @@
 					</div>
 
 				</div>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>						
+
+				</div>
+				</div>
+					</li>
+					<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+				</a>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
+						<a class="collapse-item" th:href="@{/calificacions/reports}">Reportes de calificacion </a>
 					</div>
 
 				</div>
-					</li>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservas/reports}">Reportes de reservacion </a>
+					</div>
+
+				</div>
+				
+				</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -191,7 +214,7 @@
 						<div class="form-group row">
 							<label for="DNI" class="col-sm-2 col-form-label">DNI </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{DNI}" class="form-control"
+								<input placeholder="Ingrese su DNI" type="number" th:field="*{DNI}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></small>
@@ -202,7 +225,7 @@
 							<label for="name" class="col-sm-2 col-form-label">Conductor:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameConductor}"
+								<input placeholder="Ingrese su nombre" type="text" th:field="*{nameConductor}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -214,7 +237,7 @@
 						<div class="form-group row">
 							<label for="email" class="col-sm-2 col-form-label">Email: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{emailConductor}" class="form-control"
+								<input placeholder="Ingrese su Email" type="text" th:field="*{emailConductor}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('emailConductor')}" th:errors="*{emailConductor}"></small>
@@ -224,7 +247,7 @@
 						<div class="form-group row">
 							<label for="address" class="col-sm-2 col-form-label">Direccion: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{addressConductor}" class="form-control"
+								<input placeholder="Ingrese su direccion" type="text" th:field="*{addressConductor}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('addressConductor')}" th:errors="*{addressConductor}"></small>
@@ -235,7 +258,7 @@
 							<label for="tiu" class="col-sm-2 col-form-label">TIU:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{TIU}"
+								<input placeholder="Ingrese su TIU" type="text" th:field="*{TIU}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -247,7 +270,7 @@
 						<div class="form-group row">
 							<label for="descripcion" class="col-sm-2 col-form-label">Descripcion: </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{descriptionConductor}" class="form-control"
+								<input placeholder="Ingrese su descripcion" type="text" th:field="*{descriptionConductor}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('descriptionConductor')}" th:errors="*{descriptionConductor}"></small>
@@ -258,7 +281,7 @@
 							<label for="account" class="col-sm-2 col-form-label">Numero de Cuenta:
 							</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{accountNumber}"
+								<input placeholder="Ingrese su Numero de cuenta" type="number" th:field="*{accountNumber}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -269,7 +292,7 @@
 						<div class="form-group row">
 							<label for="saldo" class="col-sm-2 col-form-label">Balance a favor: </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{balanceFavor}"
+								<input placeholder="Ingrese su balance" min="20" type="number" th:field="*{balanceFavor}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -282,7 +305,7 @@
 						<div class="form-group row">
 							<label for="deuda" class="col-sm-2 col-form-label">Deuda: </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{balanceDebt}"
+								<input placeholder="Ingrese su deuda" min="0" max="100"  type="number" th:field="*{balanceDebt}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

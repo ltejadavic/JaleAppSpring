@@ -57,53 +57,70 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				</div>
+
+
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" th:href="@{/reservas/list}">Reservas
+							</a>
+						</div>
+
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/viajes/list}">Viajes </a>
+					</div>
 
 				</div>
-				</div>	
+				</div>
+
+				
 				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>
 
 					</div>
+				</div>
+				</li>
+				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+				</a>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/calificacions/reports}">Reportes de calificacion </a>
+					</div>
+
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
-						</a>
+						<a class="collapse-item" th:href="@{/reservas/reports}">Reportes de reservacion </a>
 					</div>
 
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
-					</div>
-
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
-					</div>
-
-				</div>
+				
 				</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -187,21 +204,13 @@
 					</div>
 
 					<form th:action="@{/rutas/save}" th:object="${ruta}" method="post">
-						<div class="form-group row">
-							<label for="Cruta" class="col-sm-2 col-form-label">Id </label>
-							<div class="col-sm-6">
-								<input type="number" th:field="*{Cruta}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Cruta')}" th:errors="*{Cruta}"></small>
-							</div>
-						</div>
+						
 
 						<div class="form-group row">
 							<label for="Druta" class="col-sm-2 col-form-label">Inicio:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Druta}" class="form-control"
+								<input type="text" placeholder="Ingrese su direccion de inicio" th:field="*{Druta}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Druta')}" th:errors="*{Druta}"></small>
@@ -211,7 +220,7 @@
 							<label for="Fruta" class="col-sm-2 col-form-label">Fin:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Fruta}" class="form-control"
+								<input placeholder="Ingrese su destino" type="text" th:field="*{Fruta}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Fruta')}" th:errors="*{Fruta}"></small>
@@ -219,10 +228,10 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="distance" class="col-sm-2 col-form-label">Distancia:
+							<label for="distance" class="col-sm-2 col-form-label">Distancia (km):
 							</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{distance}"
+								<input min="2" placeholder="Ingrese la distancia en km" type="number" th:field="*{distance}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -232,10 +241,10 @@
 						</div>
 						
 						<div class="form-group row">
-							<label for="time" class="col-sm-2 col-form-label">Tiempo en horas:
+							<label for="time" class="col-sm-2 col-form-label">Tiempo en horas (hrs):
 							</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{time}"
+								<input min="1" placeholder="Ingrese su tiempo en horas" type="number" th:field="*{time}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -260,7 +269,7 @@
 						<div class="form-group row">
 							<label for="costo" class="col-sm-2 col-form-label">Costo: </label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{costo}" class="form-control"
+								<input placeholder="Ingrese el costo de la ruta" min="5" max="50" type="number" th:field="*{costo}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('costo')}" th:errors="*{costo}"></small>

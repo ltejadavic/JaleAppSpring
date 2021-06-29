@@ -38,11 +38,11 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/conductors/list}">
+				th:href="@{/passengers/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">JaleAPP Conductores</div>
+				<div class="sidebar-brand-text mx-2">JaleAPP Pasajeros</div>
 			</a>
 
 			<!-- Divider -->
@@ -61,57 +61,41 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/passengers/list}">Pasajeros</a>
 
-				</div>
+					</div>
+					
+
+
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
+					</div>
 				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
 
-				</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/brands/list}">Marca</a>						
 
-				</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/vehicles/listFind}">Buscar conductores</a>						
 
-				</div>
-				</div>
-				</div>
-					
 
-				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/rutas/list}">Rutas
-						</a>
+						<a class="collapse-item" th:href="@{/rutas/list}">Rutas </a>
 					</div>
 
 				</div>
-				
+
+
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Users</a>						
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>
 
-				</div>
-				</div>
-				</li>
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
+					</div>
+				</div></li>
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
 				</a>
@@ -132,7 +116,6 @@
 				</div>
 				
 				</li>
-
 
 
 			<!-- Divider -->
@@ -203,83 +186,41 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="content container">
+					<div class="cinforeport">
+						<h3 class="title-content">Reportes de Reservas</h3>
+					</div>
+				</div>
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Conductores</h1>
+				<div class="bg row">
 
-					<form th:action="@{/conductors/find}" method="post"
-						th:object="${conductor}">
-						<div class="form-group">
-
-							<label for=cat>Buscar:</label>
-							<div class="col-sm-12">
-								<input type="text" class="form-control"
-									th:field="*{nameConductor}" id="cat"
-									placeholder="Ingrese nombre del conductor"></input>
-								<div align="right">
-									<button type="submit" class="btn btn-danger">Buscar</button>
-									<a href="/conductors/list" class="btn btn-dark">Cancelar</a>
-								</div>
+				
+					<div class="content container">
+						<div class="creportes d-flex justify-content-around">
+							<div class="cproyecto ">
+								<h3 class="tproyecto ">Rutas</h3>
+								<p class="dproyecto ">Lista de rutas mas utilizadas</p>
+								<a class="lnikp " th:href="@{/reservas/listRuta/}">Ver
+									Reporte</a>
+							</div>
+							<div class="cproyecto ">
+								<h3 class="tproyecto ">Conductores</h3>
+								<p class="dproyecto ">Lista de conductores mas solicitados</p>
+								<a class="lnikp " th:href="@{/reservas/listCond/}">Ver
+									Reporte</a>
 							</div>
 
 						</div>
 
-					</form>
 
-
-
-
-					<hr class="sidebar-divider">
-
-					<table class="table table-striped">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">DNI</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Email</th>
-								<!--<th scope="col">Direccion</th>-->
-								<!--<th scope="col">TIU</th>-->
-								<th scope="col">Descripcion</th>
-								<th scope="col">Numero de Cuenta</th>
-								<th scope="col">Total de saldo</th>
-								<th scope="col">Operacion</th>
-								<th scope="col">Operacion</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="e: ${listaConductores}">
-								<td th:text="${e.idConductor}"></td>
-								<td th:text="${e.DNI}"></td>
-								<td th:text="${e.nameConductor}"></td>
-								<!--<td th:text="${e.emailConductor}"></td>-->
-								<td th:text="${e.addressConductor}"></td>
-								<!--<td th:text="${e.TIU}"></td>-->
-								<td th:text="${e.descriptionConductor}"></td>
-								<td th:text="${e.accountNumber}"></td>
-								<td th:text="${(e.balanceFavor)-(e.balanceDebt)}"></td>
-
-								<td><a th:href="@{/conductors/delete?id=}+${e.idConductor}"
-									class="btn btn-danger"><i class="fa fa-trash"
-										aria-hidden="true"></i></a></td>
-								<td><a th:href="@{'/conductors/detalle/'+${e.idConductor}}"
-									class="btn btn-danger"><i class="fa fa-pen"
-										aria-hidden="true"></i></a></td>
-
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}" class="form-text text-success"></p>
-
+					</div>
 				</div>
-				<!-- /.container-fluid -->
+				<!-- End of Main Content -->
+
+
 
 			</div>
-			<!-- End of Main Content -->
-
+			<!-- End of Content Wrapper -->
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
@@ -291,54 +232,50 @@
 			<!-- End of Footer -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Page Wrapper -->
 
-	</div>
-	<!-- End of Page Wrapper -->
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
-						salir?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
-				<div class="modal-footer">
-					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
-							onclick="document.getElementById('logoutForm').submit();"
-							type="submit">Cerrar</button>
-						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/passengers/list}">Cancel</button>
-					</form>
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+							salir?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Seleccione "Cerrar sesión" a
+						continuación si está listo para finalizar su sesión actual.</div>
+					<div class="modal-footer">
+						<form id="logoutForm" th:action="@{/logout}" method="post">
+							<button class="btn btn-danger"
+								onclick="document.getElementById('logoutForm').submit();"
+								type="submit">Cerrar</button>
+							<button class="btn btn-dark" type="button" data-dismiss="modal"
+								th:href="@{/passengers/list}">Cancel</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="/vendor/jquery/jquery.min.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
-
+		<!-- Custom scripts for all pages-->
+		<script src="/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

@@ -53,7 +53,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -69,30 +69,31 @@
 						<a class="collapse-item" th:href="@{/conductors/list}">Conductores</a>
 
 				</div>
-				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/vehicles/list}">Vehiculos</a>						
 
 				</div>
-				</div>	
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/brands/list}">Marca</a>						
+
+				</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/conductors/listFind}">Buscar conductores</a>						
+
+				</div>
+				</div>
+				</div>
+					
+
 				
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/states/list}">Estados de viaje</a>
-
-					</div>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/viajes/list}">Viajes
-						</a>
-					</div>
-
-				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -101,10 +102,33 @@
 					</div>
 
 				</div>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Users</a>						
+
+				</div>
+				</div>
+				
+				
+					</li>
+					<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded=true
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+				</a>
+				
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reservas/list}">Reservas </a>
+						<a class="collapse-item" th:href="@{/calificacions/reports}">Reportes de calificacion </a>
+					</div>
+
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reservas/reports}">Reportes de reservacion </a>
 					</div>
 
 				</div>
@@ -185,8 +209,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Pasajeros</h1>
-					<a th:href="@{/passengers/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Marcas</h1>
+					<a th:href="@{/brands/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 
 
@@ -196,28 +220,22 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">DNI</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Email</th>
-								<th scope="col">Direccion</th>
-								<th scope="col">TIU</th>
-								<th scope="col">Numero de Cuenta</th>
-								<th scope="col">Saldo</th>
-								<th scope="col">Deuda</th>
+								<th scope="col">Nombre de marca</th>
+								<th scope="col">Nombre de modelo</th>
+								<th scope="col">Año</th>
+							
+								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="e: ${listaPasajeros}">
-								<td th:text="${e.idPasajero}"></td>
-								<td th:text="${e.DNI}"></td>
-								<td th:text="${e.namePasajero}"></td>
-								<td th:text="${e.emailPasajero}"></td>
-								<td th:text="${e.addressPasajero}"></td>
-								<td th:text="${e.TIU}"></td>
-								<td th:text="${e.accountNumber}"></td>
-								<td th:text="${e.balanceFavor}"></td>
-								<td th:text="${e.balanceDebt}"></td>
-								<td><a th:href="@{/passengers/delete?id=}+${e.idPasajero}"
+							<tr th:each="e: ${listaBrand}">
+								<td th:text="${e.idMarca}"></td>
+								<td th:text="${e.nameMarca}"></td>
+								<td th:text="${e.nameModelo}"></td>
+								<td th:text="${e.yearAuto}"></td>
+								
+								
+								<td><a th:href="@{/brands/delete?id=}+${e.idMarca}"
 									class="btn btn-danger"><i class="fa fa-trash"
 										aria-hidden="true"></i></a></td>
 
